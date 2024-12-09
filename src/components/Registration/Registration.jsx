@@ -3,28 +3,14 @@ import dragonbg from '../../assets/dragonbg.jpg'
 import { ContextProvider } from '../AuthProviders/AuthProvider';
 import { useNavigate, Link } from 'react-router-dom';
 const Registration = () => {
-    const { createUser } = useContext(ContextProvider);
+    const { handleSubmit,handleGoogle } = useContext(ContextProvider);
     const navigate = useNavigate();
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const photo = form.photo.value;
-        const password = form.password.value;
-        console.log(name, email, photo, password);
 
-        //create user
-        createUser(email, password)
-            .then(result => {
-                console.log(result.user);
-                e.target.reset();
-                navigate('/login');
-            })
-            .catch(error => {
-                console.log("ERROR:", error)
-            })
-    }
+
+    const handleFormSubmit = (e) => {
+        handleSubmit(e, navigate); // Pass navigate to the context's method
+      };
+   
     return (
         <div style={{
             backgroundImage: `url(${dragonbg})`, backgroundRepeat: 'no-repeat',
@@ -35,7 +21,7 @@ const Registration = () => {
                 <div className="hero-content max-w-sm flex-col">
                     <h1 className='text-3xl'>Registration</h1>
                     <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
-                        <form className="card-body max-w-md mx-auto lg:max-w-6xl" onSubmit={handleSubmit}>
+                        <form className="card-body max-w-md mx-auto lg:max-w-6xl" onSubmit={handleFormSubmit}>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
@@ -66,11 +52,12 @@ const Registration = () => {
                             <div className="form-control mt-2">
                                 <button type="submit" className="btn btn-primary">Registration</button>
                             </div>
-                            <div className="form-control mt-2">
-                                <button type="submit" className="btn btn-primary">Login with Google</button>
-                            </div>
+                            
                             <p>Aready have an account? then click on <Link className='hover:text-red-300' to="/login">Login</Link></p>
                         </form>
+                        <div className="form-control mt-2">
+                                <button onClick={() => handleGoogle(navigate)} type="submit" className="btn btn-primary">Login with Google</button>
+                            </div>
                     </div>
                 </div>
             </div>

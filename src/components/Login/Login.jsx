@@ -1,24 +1,14 @@
 import React, { useContext } from 'react';
 import loginbg from '../../assets/loginbg.jpg'
 import { ContextProvider } from '../AuthProviders/AuthProvider';
+import { useNavigate, Link } from 'react-router-dom';
 const Login = () => {
-    const {signInUser} =useContext(ContextProvider);
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log( email, password);
+    const {signInUser,handleSubmit2} =useContext(ContextProvider);
+    const navigate = useNavigate();
 
-        signInUser(email, password)
-        .then(result=>{
-            console.log(result.user)
-        })
-        .catch(error=>{
-            console.log("ERROR:",error)
-        })
-
-    }
+    const handleFormSubmit = (e) => {
+        handleSubmit2(e, navigate); // Pass navigate to the context's method
+      };
     return (
         <div style={{ backgroundImage: `url(${loginbg})`,backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
@@ -27,7 +17,7 @@ const Login = () => {
                 <div className="hero-content max-w-sm flex-col">
                 <h1 className='text-3xl'>Login</h1>
                     <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
-                        <form className="card-body max-w-md mx-auto lg:max-w-6xl" onSubmit={handleSubmit}>
+                        <form className="card-body max-w-md mx-auto lg:max-w-6xl" onSubmit={handleFormSubmit}>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
