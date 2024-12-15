@@ -1,23 +1,39 @@
 import React from 'react';
 import Card1 from '../../assets/Card-1 (2).png'
-const Card = () => {
+const Card = ({reviews}) => {
+    
+  if (!reviews || reviews.length === 0) {
+    return <p>No reviews available</p>;
+  }
+
+    
     return (
-        <div className='mx-auto pt-5 border-2 border-gray-900'>
-            <div className="card bg-[#3f3a5b70] w-70 shadow-xl rounded-none">
-                <figure className='w-5/6 skew-x-[-10deg] mx-auto'>
-                    <img
-                        src={Card1}
-                        alt="Shoes" />
-                </figure>
-                <div className="card-body">
-                    <h2 className="card-title">Bloodborne - First Try!</h2>
-                    <p>Gus sits with his own motion. I don't know when, or how, I don't know what. That I know, it's torture. He is powerless to stop his own.</p>
-                    <div className="card-actions justify-start">
-                        <button className="btn btn-accent">Explore Detailsss</button>
-                    </div>
-                </div>
+        <div className="container__right">
+        {reviews.map((review, index) => (
+          <div key={index} className="card">
+            <div class="avatar">
+              <div class="w-12">
+                <img src={review?.thumbnail} alt="" />
+              </div>
             </div>
-        </div>
+
+            <p className=''>{review?.publishing_year}</p>
+            <div className="card__content ">
+              <p>{review?.rating}</p>
+              <p >{review?.genre}</p>
+              
+              <span>
+                <i className="ri-double-quotes-l"></i>
+              </span>
+              
+            </div>
+            <div className="card__details">
+                <p>{review?.description}</p>
+                <h4 className='ml-72'>Written By:{review?.name}</h4>
+              </div>
+          </div>
+        ))}
+      </div>
     );
 };
 

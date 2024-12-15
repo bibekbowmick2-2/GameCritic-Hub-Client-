@@ -1,30 +1,13 @@
-
 import React from "react";
 import "./CustomerSection.css";
+import { useLoaderData } from "react-router-dom";
+import Card from "../Cards/Card";
 // import caro4 from '../../assets/caro-2 (3).jpg'
 
-const testimonials = [
-  {
-    img: "../../assets/pic-1.jpg",
-    quote:
-      "We had a great time collaborating with the Filament team. They have my high recommendation!",
-    author: "- Marnus Stephen",
-  },
-  {
-    img: "../../assets/pic-2.jpeg",
-    quote:
-      "The team drastically improved our product's user experience & increased our business outreach.",
-    author: "- Andrew Jettpace",
-  },
-  {
-    img: "../../assets/pic-3.jpg",
-    quote:
-      "I absolutely loved working with the Filament team. Complete experts at what they do!",
-    author: "- Stacy Stone",
-  },
-];
-
 const AllReview = () => {
+  const loaderData = useLoaderData(); 
+  const reviews = Array.isArray(loaderData) ? loaderData : loaderData.reviews || [];
+   
   return (
     <header className="header">
       <div className="container">
@@ -40,22 +23,9 @@ const AllReview = () => {
           </p>
           <button>Read our success stories</button>
         </div>
-        <div className="container__right">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="card">
-              <img src={testimonial.img} alt="user" />
-              <div className="card__content">
-                <span>
-                  <i className="ri-double-quotes-l"></i>
-                </span>
-                <div className="card__details">
-                  <p>{testimonial.quote}</p>
-                  <h4>{testimonial.author}</h4>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+
+        <Card reviews={reviews}> </Card>
+        
       </div>
     </header>
   );

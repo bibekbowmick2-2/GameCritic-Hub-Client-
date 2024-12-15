@@ -8,6 +8,40 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
     const provider = new GoogleAuthProvider(); 
+
+
+
+    const handleReview =  async(e,navigate) =>{
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value;
+      const title = form.title.value;
+      const email = form.email.value;
+      const thumbnail = form.thumbnail.value;
+      const rating = form.rating.value;
+      const publishing_year = form.publishing_year.value;
+      const description = form.description.value;
+      const genre = form.genre.value;
+
+      const reviews = {name,title,email,thumbnail,rating,publishing_year,description,genre};
+
+      fetch('http://localhost:5000/reviews', {
+        
+        method: 'POST',
+        headers: {
+          
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(reviews)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.insertedId){
+          alert('Review added successfully');
+        }
+      })
+
+    }
     
 
 
@@ -119,18 +153,18 @@ const AuthProvider = ({ children }) => {
     }, [])
 
 
-    const authInfo = {
-        user,
-        signInUser,
-        signOutUser,
-        loading,
-    }
+  
     return (
         <ContextProvider.Provider value={{
-            authInfo,
+          
             handleGoogle,
             handleSubmit,
-            handleSubmit2
+            handleSubmit2,
+            signInUser,
+            signOutUser,
+            loading,
+            user,
+            handleReview
             }}
         >
             {children}

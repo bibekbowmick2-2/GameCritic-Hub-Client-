@@ -16,7 +16,7 @@ const Registration = () => {
             backgroundImage: `url(${dragonbg})`, backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'right'
-        }} className='min-h-[900px] pt-[30px] px-4 lg:min-h-[800px] lg:pt-[30px] relative'>
+        }} className='min-h-[900px] pt-[30px] px-4 lg:min-h-[850px] lg:pt-[30px] relative'>
             <div className=" hero opacity-90 bg-base-200 w-11/12  lg:max-w-md absolute lg:right-[200px] rounded-xl">
                 <div className="hero-content max-w-sm flex-col">
                     <h1 className='text-3xl'>Registration</h1>
@@ -55,7 +55,7 @@ const Registration = () => {
                             
                             <p>Aready have an account? then click on <Link className='hover:text-red-300' to="/login">Login</Link></p>
                         </form>
-                        <div className="form-control mt-2">
+                        <div className="form-control ">
                                 <button onClick={() => handleGoogle(navigate)} type="submit" className="btn btn-primary">Login with Google</button>
                             </div>
                     </div>

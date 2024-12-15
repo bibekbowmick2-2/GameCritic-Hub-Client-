@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { ContextProvider } from '../AuthProviders/AuthProvider';
 const Header = () => {
     const { user, signOutUser } = useContext(ContextProvider);
-    console.log(user);
+    // console.log(user);
     const handleSignOut = () => {
         signOutUser()
             .then(() => {
@@ -23,6 +23,8 @@ const Header = () => {
                 <li><NavLink to="/addReviews">Add Review</NavLink></li>
                 <li><NavLink to="/myReviews">My Review</NavLink></li>
                 <li><NavLink to="/gameWatchList">Game Watch List</NavLink></li>
+                <li><NavLink to="/product-details">Product Details</NavLink></li>
+
             </>
         }
         <li><NavLink to="/login">Login</NavLink></li>
@@ -64,7 +66,7 @@ const Header = () => {
                 {
                     user ?
                         <>
-                            <span className='btn'>{user?.email}</span>
+                            <span className='btn mr-2'>{user?.email}</span>
                             <a className='btn' onClick={handleSignOut}>Sign Out</a>
                         </> :
                         <Link to="/login">Login</Link>

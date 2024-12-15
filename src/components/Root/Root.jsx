@@ -7,7 +7,7 @@ const Root = () => {
     return (
         <div className='relative font-lato bg-[#04020e]'>
             <Header/>
-            <Outlet />
+            <Outlet   />
             <Foooter/>
         </div>
     );
