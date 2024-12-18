@@ -1,16 +1,34 @@
 import React from "react";
 import "./ProductDetailsPage.css";
 import dragonbg from '../../assets/shoe_1.jpg'
+import { useLoaderData, useParams } from "react-router-dom";
 
 const ProductDetailsPage = () => {
+
+  const  games = useLoaderData();
+
+  const { id } = useParams(); 
+  console.log(id);
+
+  // Find the specific product based on the ID
+  const product = games.find((game) => game._id === id);
+
+  if (!product) {
+    return (
+      <div className="container mx-auto py-10 text-center text-red-500">
+        <h1>Product Not Found</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="card1-wrapper">
       <div className="card1 card2">
         {/* Card Left */}
         <div className="product-imgs">
           <div className="img-display">
-            <div className="img-showcase">
-              <img src={dragonbg} alt="Shoe 1" />
+            <div className="img-showcase ">
+              <img className="rounded-full" src={product.thumbnail} alt="Shoe 1" />
               {/* <img src="/shoes_images/shoe_2.jpg" alt="Shoe 2" />
               <img src="/shoes_images/shoe_3.jpg" alt="Shoe 3" />
               <img src="/shoes_images/shoe_4.jpg" alt="Shoe 4" /> */}
@@ -28,34 +46,32 @@ const ProductDetailsPage = () => {
 
         {/* Card Right */}
         <div className="product-content">
-          <h2 className="product-title text-color">Nike Shoes</h2>
-          <a href="#" className="product-link">
+          <h2 className="product-title text-color">{product.title}</h2>
+          {/* <a href="#" className="product-link">
             Visit Nike Store
-          </a>
+          </a> */}
           <div className="product-rating">
             <i className="fas fa-star"></i>
             <i className="fas fa-star"></i>
             <i className="fas fa-star"></i>
             <i className="fas fa-star"></i>
             <i className="fas fa-star-half-alt"></i>
-            <span className="bg-white p-2 rounded-full ">4.7 (21)</span>
+            <span className="bg-white p-2 rounded-full ">4.{product.rating}</span>
           </div>
 
           <div className="product-price">
-            <p className="last-price text-color">
+            {/* <p className="last-price text-color">
               Old Price: <span>$257.00</span>
             </p>
             <p className="new-price text-color">
               New Price: <span>$249.00 (5%)</span>
-            </p>
+            </p> */}
           </div>
 
           <div className="product-detail">
             <h2 className="text-slate-100">About this item:</h2>
             <p className="text-color">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
-              eveniet veniam tempora fuga tenetur placeat sapiente architecto
-              illum soluta consequuntur, aspernatur quidem at sequi ipsa!
+              {product.description}
             </p>
             <p className="text-color">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -64,20 +80,15 @@ const ProductDetailsPage = () => {
             </p>
             <ul className="text-color">
               <li>
-                Color: <span>Black</span>
+                Publishing year: <span>{product.publishing_year}</span>
               </li>
               <li>
                 Available: <span>In Stock</span>
               </li>
               <li>
-                Category: <span>Shoes</span>
+               Genre : <span>{product.genre}</span>
               </li>
-              <li>
-                Shipping Area: <span>All over the world</span>
-              </li>
-              <li>
-                Shipping Fee: <span>Free</span>
-              </li>
+              
             </ul>
           </div>
 

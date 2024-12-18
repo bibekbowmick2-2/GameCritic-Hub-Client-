@@ -1,6 +1,7 @@
 import AddReview from "../components/AddReview/AddReview";
 import AllReview from "../components/AllReview/AllReview";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
+import FAQ from "../components/FAQ";
 import GameWatchList from "../components/GameWatchList/GameWatchList";
 import Home from "../components/Home/Home";
 import Login from "../components/Login/Login";
@@ -19,19 +20,22 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home/>,
-                loader: () => fetch('http://localhost:5000/coffee'),
+                 loader: () => fetch('http://localhost:5000/review'),
+                
             },
             
             {
                 path: "/home",
                 element: <Home/>,
-                 loader: () => fetch('http://localhost:5000/coffee'),
+                 loader: () => fetch('http://localhost:5000/review'),
+                
             },
 
             {
                 path: "/allReviews",
                 element: <AllReview/>,
-                 loader: () => fetch('http://localhost:5000/reviews'),
+                  loader: () => fetch('http://localhost:5000/reviews'),
+                
                  
             },
             {
@@ -58,9 +62,15 @@ const router = createBrowserRouter([
 
 
             {
-                path: "/product-details",
+                path: "/product-details/:id",
                 element: <ProductDetailsPage/>,
-            }
+                loader: () => fetch('http://localhost:5000/review'),
+            },
+
+            {
+                path: "/faq",
+                element: <FAQ/>
+              },
 
 
         ]

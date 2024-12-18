@@ -23,12 +23,12 @@ const Header = () => {
                 <li><NavLink to="/addReviews">Add Review</NavLink></li>
                 <li><NavLink to="/myReviews">My Review</NavLink></li>
                 <li><NavLink to="/gameWatchList">Game Watch List</NavLink></li>
-                <li><NavLink to="/product-details">Product Details</NavLink></li>
+                
 
             </>
         }
-        <li><NavLink to="/login">Login</NavLink></li>
-        <li><NavLink to="/registration">Registration</NavLink></li>
+        <li><NavLink to="/faq">FAQ</NavLink></li>
+       
 
     </>
     return (
@@ -69,7 +69,10 @@ const Header = () => {
                             <span className='btn mr-2'>{user?.email}</span>
                             <a className='btn' onClick={handleSignOut}>Sign Out</a>
                         </> :
-                        <Link to="/login">Login</Link>
+                        <>
+                        <li><NavLink to="/login">Login</NavLink></li>
+                       <li><NavLink to="/registration">Registration</NavLink></li>
+                       </>
                 }
             </div>
         </div>
