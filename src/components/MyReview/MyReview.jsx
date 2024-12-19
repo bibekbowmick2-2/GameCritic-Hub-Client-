@@ -10,8 +10,8 @@ const MyReview = () => {
   // const loaderData = useLoaderData(); 
   // const reviews = Array.isArray(loaderData) ? loaderData : loaderData.reviews || [];
 
-  const { user} = useContext(ContextProvider);
-  const [reviews, setReviews] = useState([]);
+  const { user,reviews, setReviews} = useContext(ContextProvider);
+  // const [reviews, setReviews] = useState([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
