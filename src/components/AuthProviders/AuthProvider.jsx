@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut,signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import auth from '../../firebase.init';
+import Swal from 'sweetalert2'
+import { data } from 'react-router-dom';
 export const ContextProvider = createContext();
 
 
@@ -140,6 +142,60 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     }
 
+  
+    const handleDelete = (id) => {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger"
+        },
+        buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          
+          
+          fetch(`http://localhost:5000/my-review/${id}`,{
+            method: 'DELETE'
+          })
+          .then(res=>res.json())
+          .then(data=>{
+            console.log(data)
+            if(data.deletedCount>0)
+            {
+                
+              swalWithBootstrapButtons.fire({
+                title: "Deleted!",
+                text: "Your Review has been deleted.",
+                icon: "success"
+              });
+            }
+          })
+
+
+          
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your review is safe :)",
+            icon: "error"
+          });
+        }
+      });
+
+  }
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, CurrentUser => {
@@ -164,7 +220,8 @@ const AuthProvider = ({ children }) => {
             signOutUser,
             loading,
             user,
-            handleReview
+            handleReview,
+            handleDelete
             }}
         >
             {children}

@@ -4,7 +4,7 @@ import { ContextProvider } from "../AuthProviders/AuthProvider";
 import { useNavigate, Link } from "react-router-dom";
 
 const AddReview = () => {
-   const { handleReview} = useContext(ContextProvider);
+   const { handleReview,user} = useContext(ContextProvider);
    const navigate = useNavigate();
   const handleFormSubmit = (e) => {
     handleReview(e, navigate); // Pass navigate to the context's method
@@ -59,6 +59,7 @@ const AddReview = () => {
                   placeholder="email"
                   name="email"
                   className="input input-bordered"
+                  defaultValue={user.email}
                   required
                 />
               </div>

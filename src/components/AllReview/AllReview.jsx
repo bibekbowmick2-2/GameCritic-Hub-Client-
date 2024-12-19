@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router-dom";
 import Card from "../Cards/Card";
 // import caro4 from '../../assets/caro-2 (3).jpg'
 
+
 const AllReview = () => {
   const loaderData = useLoaderData(); 
   const reviews = Array.isArray(loaderData) ? loaderData : loaderData.reviews || [];
