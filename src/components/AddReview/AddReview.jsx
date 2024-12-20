@@ -15,7 +15,8 @@ const AddReview = () => {
         backgroundImage: `url(${dragonbg})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        backgroundPosition: "right",
+        backgroundPosition: "bottom center",
+        
       }}
       className="min-h-[900px] pt-[30px] px-4 lg:min-h-[1100px] lg:pt-[30px] relative"
     >
@@ -33,6 +34,8 @@ const AddReview = () => {
                   placeholder="name"
                   name="name"
                   className="input input-bordered w-64"
+                  defaultValue={user.displayName}
+                  readOnly
                   required
                 />
               </div>
@@ -60,6 +63,7 @@ const AddReview = () => {
                   name="email"
                   className="input input-bordered"
                   defaultValue={user.email}
+                  readOnly
                   required
                 />
               </div>

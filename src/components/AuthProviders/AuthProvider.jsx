@@ -6,14 +6,16 @@ import {
   signOut,
   signInWithPopup,
   GoogleAuthProvider,
+  updateProfile,
 } from "firebase/auth";
 import auth from "../../firebase.init";
 import Swal from "sweetalert2";
 import { data } from "react-router-dom";
+import { toast } from 'react-toastify';
 export const ContextProvider = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
   const provider = new GoogleAuthProvider();
   const [reviews, setReviews] = useState([]);
@@ -51,7 +53,8 @@ const AuthProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
-          alert("Review added successfully");
+          toast.success("Review added successfully");
+          navigate("/allReviews");
         }
       });
   };
@@ -64,6 +67,11 @@ const AuthProvider = ({ children }) => {
     const photo = form.photo.value;
     const password = form.password.value;
     console.log(name, email, photo, password);
+    
+      setLoading(true);
+   
+
+    
 
     try {
       // Create user with email and password
@@ -72,26 +80,31 @@ const AuthProvider = ({ children }) => {
         email,
         password
       );
+
+     
       const user = userCredential.user;
 
       // Update user profile with additional data
-      // await updateProfile(user, {
-      //   displayName: name,
-      //   photoURL: url,
-      // });
+      await updateProfile(user, {
+        displayName: name,
+        photoURL: photo,
+      });
 
       console.log("Signed up User", user);
       navigate("/");
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      // toast.error(errorMessage);
+       toast.error(errorMessage);
       console.error("Error during sign-up", errorCode, errorMessage);
+    }finally {
+      setLoading(false);
     }
   };
 
-  const handleSubmit2 = (e, navigate) => {
+  const handleSubmit2 =  async(e, navigate) => {
     e.preventDefault();
+    setLoading(true);
     const email = e.target.email.value;
     const password = e.target.password.value;
     // const error = validatePassword(password);
@@ -102,10 +115,11 @@ const AuthProvider = ({ children }) => {
 
     // setPasswordError("");
 
-    signInWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+      
         console.log("Signed in  User", user);
         navigate("/");
         // ...
@@ -114,7 +128,11 @@ const AuthProvider = ({ children }) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         // toast.error(errorMessage);
-      });
+      }
+      
+      ).finally (() => {
+        setLoading(false);
+      })
   };
 
   const handleGoogle = (navigate) => {
@@ -131,7 +149,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const signInUser = (email, password) => {
-    setLoading(true);
+   
     return signInWithEmailAndPassword(auth, email, password);
   };
 
