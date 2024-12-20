@@ -3,7 +3,7 @@ import dragonbg from "../../assets/dragonbg.jpg";
 import { ContextProvider } from "../AuthProviders/AuthProvider";
 import { useNavigate, Link } from "react-router-dom";
 const Registration = () => {
-  const { handleSubmit, handleGoogle, loading } = useContext(ContextProvider);
+  const { handleSubmit, handleGoogle, loading, passwordError } = useContext(ContextProvider);
   const navigate = useNavigate();
 
   const handleFormSubmit = (e) => {
@@ -96,6 +96,11 @@ const Registration = () => {
                   Registration
                 </button>
               </div>
+
+
+              {passwordError && (
+            <p className="text-red-500 text-sm mt-1">{passwordError}</p>
+          )}
 
               <p>
                 Aready have an account? then click on{" "}

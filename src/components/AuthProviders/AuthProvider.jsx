@@ -19,9 +19,32 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const provider = new GoogleAuthProvider();
   const [reviews, setReviews] = useState([]);
+  const [passwordError, setPasswordError] = useState("");
+
+
+
+  const validatePassword = (password) => {
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const isValidLength = password.length >= 6;
+
+    if (!hasUppercase) {
+      return "Password must have at least one uppercase letter.";
+    }
+    if (!hasLowercase) {
+      return "Password must have at least one lowercase letter.";
+    }
+    if (!isValidLength) {
+      return "Password must be at least 6 characters long.";
+    }
+
+    return ""; // No errors
+  };
+
 
   const handleReview = async (e, navigate) => {
     e.preventDefault();
+    setLoading(true);
     const form = e.target;
     const name = form.name.value;
     const title = form.title.value;
@@ -31,6 +54,8 @@ const AuthProvider = ({ children }) => {
     const publishing_year = form.publishing_year.value;
     const description = form.description.value;
     const genre = form.genre.value;
+
+   
 
     const reviews = {
       name,
@@ -53,8 +78,10 @@ const AuthProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
+          setLoading(false);
           toast.success("Review added successfully");
           navigate("/allReviews");
+         
         }
       });
   };
@@ -69,7 +96,14 @@ const AuthProvider = ({ children }) => {
     console.log(name, email, photo, password);
     
       setLoading(true);
-   
+      const error = validatePassword(password);
+      if (error) {
+        setPasswordError(error); // Set the error message
+        
+        return; // Stop form submission
+      }
+  
+      setPasswordError("");
 
     
 
@@ -90,6 +124,10 @@ const AuthProvider = ({ children }) => {
         photoURL: photo,
       });
 
+
+      setLoading(false);
+      toast.success("User created successfully");
+
       console.log("Signed up User", user);
       navigate("/");
     } catch (error) {
@@ -97,29 +135,30 @@ const AuthProvider = ({ children }) => {
       const errorMessage = error.message;
        toast.error(errorMessage);
       console.error("Error during sign-up", errorCode, errorMessage);
-    }finally {
-      setLoading(false);
     }
   };
 
   const handleSubmit2 =  async(e, navigate) => {
     e.preventDefault();
-    setLoading(true);
+   
     const email = e.target.email.value;
     const password = e.target.password.value;
-    // const error = validatePassword(password);
-    // if (error) {
-    // //   setPasswordError(error); // Set the error message
-    //   return; // Stop form submission
-    // }
+    setLoading(true);
+   
+    const error = validatePassword(password);
+    if (error) {
+       setPasswordError(error); // Set the error message
+      return; // Stop form submission
+    }
 
-    // setPasswordError("");
+     setPasswordError("");
 
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-      
+       
+      setLoading(false);
         console.log("Signed in  User", user);
         navigate("/");
         // ...
@@ -127,12 +166,10 @@ const AuthProvider = ({ children }) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // toast.error(errorMessage);
+         
       }
       
-      ).finally (() => {
-        setLoading(false);
-      })
+      )
   };
 
   const handleGoogle = (navigate) => {
@@ -247,7 +284,8 @@ const AuthProvider = ({ children }) => {
         handleReview,
         handleDelete,
         reviews,
-        setReviews
+        setReviews,
+        passwordError,
 
       }}
     >

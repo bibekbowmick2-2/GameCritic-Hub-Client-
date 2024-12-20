@@ -3,7 +3,7 @@ import loginbg from "../../assets/loginbg.jpg";
 import { ContextProvider } from "../AuthProviders/AuthProvider";
 import { useNavigate, Link } from "react-router-dom";
 const Login = () => {
-  const { signInUser, handleSubmit2, loading } = useContext(ContextProvider);
+  const { signInUser, handleSubmit2, loading,passwordError } = useContext(ContextProvider);
   const navigate = useNavigate();
 
   const handleFormSubmit = (e) => {
@@ -66,6 +66,10 @@ const Login = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
+
+              {passwordError && (
+            <p className="text-red-500 text-sm mt-1">{passwordError}</p>
+          )}
             </form>
           </div>
         </div>

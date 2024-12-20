@@ -4,7 +4,7 @@ import { ContextProvider } from "../AuthProviders/AuthProvider";
 import { useNavigate, Link } from "react-router-dom";
 
 const AddReview = () => {
-   const { handleReview,user} = useContext(ContextProvider);
+   const { handleReview,user,loading} = useContext(ContextProvider);
    const navigate = useNavigate();
   const handleFormSubmit = (e) => {
     handleReview(e, navigate); // Pass navigate to the context's method
@@ -138,10 +138,23 @@ const AddReview = () => {
                   Submit
                 </button>
               </div>
+
+             
+
+              
             </form>
           </div>
+          
         </div>
       </div>
+
+      {
+  loading ? (
+    <div className="flex items-center justify-center h-screen">
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>
+  ) : <></>
+}
     </div>
   );
 };
