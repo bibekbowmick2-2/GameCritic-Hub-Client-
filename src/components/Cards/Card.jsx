@@ -12,9 +12,9 @@ const Card = ({reviews}) => {
 
     
     return (
-        <div className="container__right">
+        <div className="container__right ">
         {reviews.map((review, index) => (
-          <div key={index} className="card">
+          <div key={index} className="card max-w-sm md:max-w-md lg:max-w-lg">
             <div class="avatar">
               <div class="w-12">
                 <img src={review?.thumbnail} alt="" />

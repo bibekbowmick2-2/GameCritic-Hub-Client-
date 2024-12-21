@@ -46,7 +46,7 @@ if (!product) {
          backgroundColor: '#080325',
        
     }}
-      className="min-h-[900px] pt-[30px] px-4 lg:min-h-[1100px] lg:pt-[30px] relative"
+      className="min-h-[1150px] pt-[30px] px-4 lg:min-h-[1100px] lg:pt-[30px] relative"
     >
       <div className=" hero opacity-90 bg-base-200 w-11/12  lg:max-w-md absolute lg:right-[200px] rounded-xl">
         <div className="hero-content max-w-sm flex-col">

@@ -7,7 +7,7 @@ const Foooter = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'right'
         }}>
-            <footer className="footer footer-center bg-[#080325c2] text-base-content rounded p-10">
+            <footer className="footer footer-center bg-[#080325c2] text-base-content rounded p-10 ">
                 <nav className="grid grid-cols-1 lg:grid-cols-4 gap-4">
                     <a className="link link-hover opacity-100 text-xl text-white ">About us</a>
                     <a className="link link-hover opacity-100 text-xl text-white">Contact</a>

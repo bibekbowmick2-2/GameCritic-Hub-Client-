@@ -5,9 +5,11 @@ import Foooter from '../Footer/Footer';
 
 const Root = () => {
     return (
-        <div className='relative font-lato bg-[#04020e]'>
+        <div className='relative font-lato bg-[#04020e] '>
             <Header/>
-            <Outlet   />
+            <div className='min-h-lvh'>
+            <Outlet/>
+            </div>
             <Foooter/>
         </div>
     );

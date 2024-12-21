@@ -4,7 +4,7 @@ const MoreQuestion = () => {
     return (
         <div>
             <div
-                className="hero max-h-[700px] lg:max-h-90"
+                className="hero min-h-lvh"
                 style={{
                     backgroundImage: "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
                 }}>

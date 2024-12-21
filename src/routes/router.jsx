@@ -1,5 +1,6 @@
 import AddReview from "../components/AddReview/AddReview";
 import AllReview from "../components/AllReview/AllReview";
+import Calendars from "../components/Calenders/Calenders";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import FAQ from "../components/FAQ";
 import GameWatchList from "../components/GameWatchList/GameWatchList";
@@ -80,10 +81,32 @@ const router = createBrowserRouter([
                 path: "/update/:id",
                 element: <PrivateRoute><UpdateReview/></PrivateRoute>,
                 loader: () => fetch(`http://localhost:5000/reviews`),
-              }
+              },
+
+              {
+        path: "/calendar",
+        element: <Calendars/>
+      },
+
+              
+
+
+
+              
+              
+              
+
+
+
+              
+                
+              
 
 
         ]
+
+              
+
     },
     {
         path: "*",

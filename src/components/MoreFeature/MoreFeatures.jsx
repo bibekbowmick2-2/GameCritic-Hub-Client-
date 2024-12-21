@@ -8,10 +8,10 @@ const MoreFeatures = () => {
             backgroundPosition: 'center',
             opacity: '0.9',
 
-        }} className="w-full h-[750px] lg:h-[450px]">
+        }} className="w-full min-h-lvh lg:h-[450px] ">
             <div className="bg-[#0000008a] h-full w-full pt-10">
                 <h1 className='text-3xl text-center text-white'>A Bit More Features</h1>
-                <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10 gap-5'>
+                <div className=' grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 py-10 gap-5'>
                     <div style={{backgroundColor: '#341313'}}  className="card  text-neutral-content w-[300px] lg:w-[300px] lg:skew-x-[-12deg] mx-auto rounded-none">
                         <div className="card-body items-center text-center">
                             <h2 className="card-title">Clan Wars</h2>

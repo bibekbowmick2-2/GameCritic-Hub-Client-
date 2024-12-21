@@ -24,6 +24,10 @@ const Header = () => {
       <li>
         <NavLink to="/allReviews">All Review</NavLink>
       </li>
+
+      <li>
+              <NavLink to="/calendar">Calendar</NavLink>
+            </li>
       {user && (
         <>
           <li>
@@ -40,10 +44,18 @@ const Header = () => {
       <li>
         <NavLink to="/faq">FAQ</NavLink>
       </li>
+      <li>
+              <NavLink to="/registration">Registration</NavLink>
+            </li>
+
+
+            <li>
+              <NavLink to="/login">Login</NavLink>
+            </li>
     </>
   );
   return (
-    <div className="navbar bg-[#7d72ba]">
+    <div className="navbar bg-[#7d72ba] ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -86,7 +98,7 @@ const Header = () => {
               place="left-start"
               variant="info"
               content=<>
-                <div class="avatar z-50">
+                <div class="avatar z-10">
                   <div class="w-24 rounded-full">
                     <img src={user?.photoURL} />
                   </div>
@@ -103,12 +115,16 @@ const Header = () => {
           </>
         ) : (
           <>
-            <li>
+            {/* <li>
               <NavLink to="/login">Login</NavLink>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <NavLink to="/registration">Registration</NavLink>
-            </li>
+            </li> */}
+
+            
+
+            
           </>
         )}
       </div>
