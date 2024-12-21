@@ -6,6 +6,7 @@ import GameWatchList from "../components/GameWatchList/GameWatchList";
 import Home from "../components/Home/Home";
 import Login from "../components/Login/Login";
 import MyReview from "../components/MyReview/MyReview";
+import UpdateReview from "../components/MyReview/UpdateReview";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import ProductDetailsPage from "../components/ProductDetails/ProductDetailsPage";
 import Registration from "../components/Registration/Registration";
@@ -68,10 +69,18 @@ const router = createBrowserRouter([
                 loader: () => fetch('http://localhost:5000/review'),
             },
 
+          
+
             {
                 path: "/faq",
                 element: <FAQ/>
               },
+
+              {
+                path: "/update/:id",
+                element: <PrivateRoute><UpdateReview/></PrivateRoute>,
+                loader: () => fetch(`http://localhost:5000/reviews`),
+              }
 
 
         ]

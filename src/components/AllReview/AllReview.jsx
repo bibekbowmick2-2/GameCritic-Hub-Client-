@@ -7,7 +7,21 @@ import Card from "../Cards/Card";
 
 const AllReview = () => {
   const loaderData = useLoaderData(); 
-  const reviews = Array.isArray(loaderData) ? loaderData : loaderData.reviews || [];
+
+ 
+  const reviewm = Array.isArray(loaderData) ? loaderData : loaderData.reviews || [];
+  const [reviews, setReviews] = React.useState(reviewm);
+
+
+  const handleSortByRating = () => {
+    const sortedByRating = [...reviews].sort((a, b) => b.rating - a.rating);
+    setReviews(sortedByRating);
+  };
+
+  const handleSortByYear = () => {
+    const sortedByYear = [...reviews].sort((a, b) => new Date(b.publishing_year) - new Date(a.publishing_year));
+    setReviews(sortedByYear);
+  };
    
   return (
     <header className="header">
@@ -22,7 +36,14 @@ const AllReview = () => {
             We have helped companies increase their customer base and generate
             multifold revenue with our service.
           </p>
-          <button>Read our success stories</button>
+          <button>Read our success stories</button><br/><br/>
+          <div class="dropdown">
+  <div tabindex="0" role="button" class="btn m-1">Sort by Rating and Publishing Year</div>
+  <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+    <li><button onClick={handleSortByRating}>Sort By Rating</button></li><br/>
+    <li><button onClick={handleSortByYear}>Sort By Year</button></li>
+  </ul>
+</div>
         </div>
 
         <Card reviews={reviews}> </Card>
