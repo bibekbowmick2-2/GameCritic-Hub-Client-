@@ -13,6 +13,15 @@ const AllReview = () => {
   const [reviews, setReviews] = React.useState(reviewm);
 
 
+  const genres = [...new Set(reviewm.map((review) => review.genre))];
+
+  const handleFilterByGenre = (genre) => {
+    const filteredByGenre = reviewm.filter((review) => review.genre === genre);
+    setReviews(filteredByGenre);
+  };
+
+
+
   const handleSortByRating = () => {
     const sortedByRating = [...reviews].sort((a, b) => b.rating - a.rating);
     setReviews(sortedByRating);
@@ -44,6 +53,21 @@ const AllReview = () => {
     <li><button onClick={handleSortByYear}>Sort By Year</button></li>
   </ul>
 </div>
+
+
+<div className="dropdown mt-4">
+            <div tabIndex="0" role="button" className="btn m-1">
+              Filter by Genre
+            </div>
+            <ul tabIndex="0" className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+              {genres.map((genre) => (
+                <li key={genre}>
+                  <button onClick={() => handleFilterByGenre(genre)}>{genre}</button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        
         </div>
 
         <Card reviews={reviews}> </Card>

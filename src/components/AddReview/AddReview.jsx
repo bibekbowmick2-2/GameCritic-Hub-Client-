@@ -125,7 +125,7 @@ const AddReview = () => {
 
               <select name="genre" class="select select-primary w-full max-w-xs">
                 <option disabled selected>
-                Genres ?
+                
                 </option>
                 <option>Action</option>
                 <option>RPG</option>

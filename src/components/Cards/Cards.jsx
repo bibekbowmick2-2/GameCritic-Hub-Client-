@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 const Cards = ({ games }) => {
   // const {name,description,picture,ratin} = games;
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-10 bg-[#04020e] ">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-10 bg-[#04020e]  ">
       {games.map((game) => (
         <div className="mx-auto pt-5 border-2 border-gray-900">
-          <div className="card bg-[#3f3a5b70] w-70 shadow-xl rounded-none">
+          <div className="card bg-[#3f3a5b70] w-70 shadow-xl rounded-none ">
             <figure className="w-5/6 skew-x-[-10deg] mx-auto">
               <img src={game.thumbnail} alt="Shoes" />
             </figure>
