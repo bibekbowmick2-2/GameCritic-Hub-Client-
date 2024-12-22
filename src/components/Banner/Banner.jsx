@@ -17,9 +17,9 @@ const Banner = () => {
   }, [slides.length]);
 
   return (
-    <div className="relative mx-auto w-full h-[300px] lg:h-[600px] lg:max-w-11/12 overflow-hidden ">
+    <div className="relative mx-auto w-full h-[400px] md:h-[400px] lg:h-[600px] lg:max-w-11/12 overflow-hidden">
       <div
-        className="flex transition-transform duration-1000 ease-in-out"
+        className="h-full flex transition-transform duration-1000 ease-in-out"
         style={{
           transform: `translateX(-${currentSlide * 100}%)`,
           width: `${slides.length * 25}%`,

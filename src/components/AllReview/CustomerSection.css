@@ -28,14 +28,16 @@ header {
 
 .container__left h1 {
   margin-bottom: 2rem;
-  font-size: 2.5rem;
-  font-weight: 500;
+  font-size: 40px ;
+  font-weight: 700;
   color: white;
 }
 
 .container__left p {
-  color:aqua;
+  color:white;
   margin-bottom: 1rem;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .container__left button {
@@ -93,7 +95,6 @@ header {
 }
 
 .card__details h4 {
-  text-align: right;
   color: var(--primary-color);
   font-size: 1rem;
   font-weight: 500;

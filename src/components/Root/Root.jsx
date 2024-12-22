@@ -7,9 +7,7 @@ const Root = () => {
     return (
         <div className='relative font-lato bg-[#04020e] '>
             <Header/>
-            <div className='min-h-lvh'>
             <Outlet/>
-            </div>
             <Foooter/>
         </div>
     );

@@ -44,14 +44,21 @@ const Header = () => {
       <li>
         <NavLink to="/faq">FAQ</NavLink>
       </li>
-      <li>
+
+      {
+        !user && (
+          <>
+          <li>
               <NavLink to="/registration">Registration</NavLink>
             </li>
-
 
             <li>
               <NavLink to="/login">Login</NavLink>
             </li>
+          </>
+        )
+      }
+      
     </>
   );
   return (
@@ -89,10 +96,10 @@ const Header = () => {
       <div className="navbar-end">
         {user ? (
           <>
-            <span data-tooltip-id="my-tooltip-2" className="btn mr-2">
+            <button data-tooltip-id="my-tooltip-2" className=" lg:btn mr-2 text-[12px]">
               {user?.email}
               <br/>{user?.displayName}
-            </span>
+            </button>
             <ReactTooltip
               id="my-tooltip-2"
               place="left-start"

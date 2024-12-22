@@ -35,7 +35,7 @@ const AllReview = () => {
   return (
     <header className="header">
       <div className="container">
-        <div className="container__left">
+        <div className="container__left ">
           <h1>Read what our customers love about us</h1>
           <p>
             Over 200 companies from diverse sectors consult us to enhance the
