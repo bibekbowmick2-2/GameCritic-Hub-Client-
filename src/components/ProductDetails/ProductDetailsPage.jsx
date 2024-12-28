@@ -7,7 +7,7 @@ import { ContextProvider } from "../AuthProviders/AuthProvider";
 const ProductDetailsPage = () => {
 
   const navigate = useNavigate();
-  const {handleAddToWatchList} = useContext(ContextProvider);
+  const {handleAddToWatchList,user} = useContext(ContextProvider);
 
   const  games = useLoaderData();
 
@@ -96,7 +96,7 @@ const ProductDetailsPage = () => {
 
           <div className="purchase-info">
             <input type="number" min="0" value="1" />
-            <button type="button" className="btn" onClick={() => handleAddToWatchList(product,navigate)}>
+            <button type="button" className="btn" onClick={() => handleAddToWatchList(product,navigate,user.email)}>
               Add to WatchList <i className="fas fa-shopping-cart"></i>
             </button>
             {/* <button type="button" className="btn">Compare</button> */}

@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function GameWatchListData({reviews}) {
+export default function GameWatchListData({items}) {
 
-    if (!reviews || reviews.length === 0) {
+    if (!items || items.length === 0) {
         return (
             <div className='min-h-lvh bg-[#9eb3e1]  flex justify-center items-center'>
                 <p className="text-orange-200 font-extrabold text-5xl ">
@@ -31,7 +31,7 @@ export default function GameWatchListData({reviews}) {
       </thead>
       <tbody>
       {
-        reviews.map((review, index) => (
+        items.map((review, index) => (
           <tr key={index}>
             <th className='lg:font-extrabold'>{index + 1}</th>
             <td>

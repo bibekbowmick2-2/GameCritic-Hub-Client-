@@ -316,26 +316,30 @@ const AuthProvider = ({ children }) => {
 
 
 
+// const [items,setItems]= useState([]);
 
-
-  const handleAddToWatchList = async (product, navigate) => {
+  const handleAddToWatchList = async (product, navigate,userEmail) => {
     setLoading(true);
 
     try{
+      const updatedProduct = { ...product, email: userEmail };
       const response = await fetch('http://localhost:5000/watchlist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(product),
+        body: JSON.stringify(updatedProduct),
     }
 
-      ).then((res) => res.json())
+      ).then((res) => res.json()
+
+      )
       .then((data) => {
         if (data.insertedId) {
           setLoading(false);
+          // setItems((prevItems) => [...prevItems, product]);
           toast.success("Watchlist added successfully");
-          navigate("/");
+          navigate("/gameWatchList");
          
         }
       });
@@ -347,6 +351,14 @@ const AuthProvider = ({ children }) => {
   }
 
   }
+
+
+
+  const [isDark, setIsDark] = useState(true);
+
+  const handleToggle = () => {
+    setIsDark(!isDark);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (CurrentUser) => {
@@ -375,7 +387,10 @@ const AuthProvider = ({ children }) => {
         setReviews,
         passwordError,
         handleUpdateReview,
-        handleAddToWatchList
+        handleAddToWatchList,
+        handleToggle,
+        isDark,
+        
 
       }}
     >

@@ -11,7 +11,12 @@ export default {
     extend: {
       fontFamily: {
         lato: ["Lato", "sans-serif"],
-      }
+      },
+
+      colors: {
+        dark: "#000000", // black
+        light: "#d4ebec", // white
+      },
     },
   },
   plugins: [daisyui],

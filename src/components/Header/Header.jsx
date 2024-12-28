@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { ContextProvider } from "../AuthProviders/AuthProvider";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 const Header = () => {
-  const { user, signOutUser } = useContext(ContextProvider);
+  const { user, signOutUser,handleToggle } = useContext(ContextProvider);
   // console.log(user);
   const handleSignOut = () => {
     signOutUser()
@@ -19,7 +19,7 @@ const Header = () => {
   const link = (
     <>
     <button>
-      <input type="checkbox" value="synthwave" className="toggle " />
+      <input type="checkbox" value="bw" className="toggle " onChange={handleToggle} />
     </button>
      
       <li>

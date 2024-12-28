@@ -7,10 +7,11 @@ const GameWatchList = () => {
     
   const navigate = useNavigate();
   const {user} = useContext(ContextProvider);
-  const [reviews, setReviews] = useState([]);
+ 
   const [error, setError] = useState("");
 
   const  products = useLoaderData();
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
     const fetchMyReviews = async () => {
@@ -24,7 +25,7 @@ const GameWatchList = () => {
           throw new Error("Failed to fetch reviews");
         }
         const data = await response.json();
-        setReviews(data);
+     setItems(data);
       } catch (err) {
         setError(err.message);
       }
@@ -34,7 +35,7 @@ const GameWatchList = () => {
   }, [user]);
     return (
         <div>
-           <GameWatchListData reviews={reviews}/>
+           <GameWatchListData items={items}/>
         </div>
     );
 };
