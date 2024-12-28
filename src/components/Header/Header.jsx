@@ -18,6 +18,10 @@ const Header = () => {
 
   const link = (
     <>
+    <button>
+      <input type="checkbox" value="synthwave" className="toggle " />
+    </button>
+     
       <li>
         <NavLink to="/home">Home</NavLink>
       </li>
@@ -107,7 +111,7 @@ const Header = () => {
               content=<>
                 <div class="avatar z-10">
                   <div class="w-24 rounded-full">
-                    <img src={user?.photoURL} />
+                    <img src={user.photoURL} />
                   </div>
                 </div>
 

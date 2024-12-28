@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./ProductDetailsPage.css";
 import dragonbg from '../../assets/shoe_1.jpg'
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { ContextProvider } from "../AuthProviders/AuthProvider";
 
 const ProductDetailsPage = () => {
+
+  const navigate = useNavigate();
+  const {handleAddToWatchList} = useContext(ContextProvider);
 
   const  games = useLoaderData();
 
@@ -20,6 +24,8 @@ const ProductDetailsPage = () => {
       </div>
     );
   }
+
+
 
   return (
     <div className="card1-wrapper">
@@ -73,11 +79,7 @@ const ProductDetailsPage = () => {
             <p className="text-color">
               {product.description}
             </p>
-            <p className="text-color">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequatur, perferendis eius. Dignissimos, labore suscipit.
-              Unde.
-            </p>
+            
             <ul className="text-color">
               <li>
                 Publishing year: <span>{product.publishing_year}</span>
@@ -94,10 +96,10 @@ const ProductDetailsPage = () => {
 
           <div className="purchase-info">
             <input type="number" min="0" value="1" />
-            <button type="button" className="btn">
-              Add to Cart <i className="fas fa-shopping-cart"></i>
+            <button type="button" className="btn" onClick={() => handleAddToWatchList(product,navigate)}>
+              Add to WatchList <i className="fas fa-shopping-cart"></i>
             </button>
-            <button type="button" className="btn">Compare</button>
+            {/* <button type="button" className="btn">Compare</button> */}
           </div>
 
           <div className="social-links">

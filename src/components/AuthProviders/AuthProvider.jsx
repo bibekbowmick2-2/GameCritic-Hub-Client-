@@ -314,6 +314,40 @@ const AuthProvider = ({ children }) => {
       });
   };
 
+
+
+
+
+  const handleAddToWatchList = async (product, navigate) => {
+    setLoading(true);
+
+    try{
+      const response = await fetch('http://localhost:5000/watchlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product),
+    }
+
+      ).then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          setLoading(false);
+          toast.success("Watchlist added successfully");
+          navigate("/");
+         
+        }
+      });
+
+
+  }
+  catch(error){
+    console.log(error);
+  }
+
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (CurrentUser) => {
       console.log("current user", CurrentUser);
@@ -340,7 +374,8 @@ const AuthProvider = ({ children }) => {
         reviews,
         setReviews,
         passwordError,
-        handleUpdateReview
+        handleUpdateReview,
+        handleAddToWatchList
 
       }}
     >
