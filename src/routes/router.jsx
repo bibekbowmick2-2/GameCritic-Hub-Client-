@@ -22,21 +22,22 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home/>,
-                 loader: () => fetch('http://localhost:5000'),
+                 loader: () => fetch('https://game-server-woad.vercel.app/'),
+                
                 
             },
             
             {
                 path: "/home",
                 element: <Home/>,
-                 loader: () => fetch('http://localhost:5000'),
+                 loader: () => fetch('https://game-server-woad.vercel.app/'),
                 
             },
 
             {
                 path: "/allReviews",
                 element: <AllReview/>,
-                  loader: () => fetch('http://localhost:5000/reviews'),
+                  loader: () => fetch('https://game-server-woad.vercel.app/reviews'),
                 
                  
             },
@@ -48,12 +49,12 @@ const router = createBrowserRouter([
             {
                 path: "/myReviews",
                 element: <PrivateRoute><MyReview/></PrivateRoute>,
-                loader: () => fetch('http://localhost:5000/reviews'),
+                loader: () => fetch('https://game-server-woad.vercel.app/reviews'),
             },
             {
                 path: "/gameWatchList",
                 element: <PrivateRoute><GameWatchList/></PrivateRoute>,
-                loader: () => fetch('http://localhost:5000/watchlist'),
+                loader: () => fetch('https://game-server-woad.vercel.app/watchlist'),
 
             },
             {
@@ -69,7 +70,7 @@ const router = createBrowserRouter([
             {
                 path: "/product-details/:id",
                 element: <ProductDetailsPage/>,
-                loader: () => fetch('http://localhost:5000'),
+                loader: () => fetch('https://game-server-woad.vercel.app/'),
             },
 
           
@@ -82,7 +83,7 @@ const router = createBrowserRouter([
               {
                 path: "/update/:id",
                 element: <PrivateRoute><UpdateReview/></PrivateRoute>,
-                loader: () => fetch(`http://localhost:5000/reviews`),
+                loader: () => fetch(`https://game-server-woad.vercel.app/reviews`),
               },
 
               {

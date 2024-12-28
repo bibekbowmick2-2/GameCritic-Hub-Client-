@@ -20,7 +20,7 @@ const MyReview = () => {
 
       
       try {
-        const response = await fetch(`http://localhost:5000/my-review?email=${user.email}`);
+        const response = await fetch(`https://game-server-woad.vercel.app/my-review?email=${user.email}`);
         console.log(user.email)
         if (!response.ok) {
           throw new Error("Failed to fetch reviews");

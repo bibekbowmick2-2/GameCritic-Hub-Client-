@@ -68,7 +68,7 @@ const AuthProvider = ({ children }) => {
       genre,
     };
 
-    fetch("http://localhost:5000/reviews", {
+    fetch("https://game-server-woad.vercel.app/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -119,7 +119,7 @@ const AuthProvider = ({ children }) => {
       id
     };
 
-    fetch(`http://localhost:5000/update-reviews/${id}`, {
+    fetch(`https://game-server-woad.vercel.app/update-reviews/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -269,7 +269,7 @@ const AuthProvider = ({ children }) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:5000/my-review1/${id}`, {
+          fetch(`https://game-server-woad.vercel.app/my-review1/${id}`, {
             method: "DELETE",
           })
             .then((res) => res.json())
@@ -323,7 +323,7 @@ const AuthProvider = ({ children }) => {
 
     try{
       const updatedProduct = { ...product, email: userEmail };
-      const response = await fetch('http://localhost:5000/watchlist', {
+      const response = await fetch('https://game-server-woad.vercel.app/watchlist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
